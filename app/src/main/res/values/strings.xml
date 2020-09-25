@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">HW</string>
+    <string name="userName">Дина Ибрагимова</string>
+    <string name="button">Дополнить историю</string>
+    <string name="city">Город проживания</string>
+    <string name="work">Место работы</string>
+    <string name="study">Учебное заведение</string>
+    <string name="homeTown">Родной город</string>
+    <string name="maritalStatus">Семейное положение</string>
+    <string name="edit">edit</string>
+    <string name="editText">Город проживания</string>
+    <string name="signout">Регистрация</string>
+    <string name="town">Введите город </string>
+    <string name="surname">Введите Фамилию</string>
+    <string name="name">Введите имя</string>
+    <string name="todo">TODO</string>
 </resources>
