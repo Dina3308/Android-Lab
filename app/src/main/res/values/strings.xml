@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HW</string>
+    <string name="set_timer">set timer</string>
+    <string name="selected_photo">selected photo</string>
 </resources>
