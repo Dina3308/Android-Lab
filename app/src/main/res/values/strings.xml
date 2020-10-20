@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HW</string>
+    <string name="planets">planets</string>
+    <string name="todo">TODO</string>
+    <string name="textName">Название:</string>
+    <string name="contentText">Описание:</string>
 </resources>
