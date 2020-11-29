@@ -9,6 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".SongService"
+            android:enabled="true"
+            android:exported="false" />
+        <receiver android:name=".NotificationReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="NEXT" />
+                <action android:name="PLAY" />
+                <action android:name="PREV" />
+                <action android:name="STOP" />
+            </intent-filter>
+        </receiver>
+        <activity android:name=".PlayerActivity" android:launchMode="singleTop" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
