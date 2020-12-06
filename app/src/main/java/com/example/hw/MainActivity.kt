@@ -29,4 +29,9 @@ class MainActivity : AppCompatActivity() {
         rv_song.adapter = adapter
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService(Intent(this, SongService::class.java))
+    }
+
 }

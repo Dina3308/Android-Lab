@@ -16,14 +16,11 @@ import androidx.core.app.NotificationCompat
 
 
 object PlayerNotification {
+
     val CHANNEL_ID_1 = "channel1"
-    val ACTION_NEXT = "NEXT"
-    val ACTION_PREV = "PREVIOUS"
-    val ACTION_PLAY = "PLAY"
-    val ACTION_STOP = "STOP"
 
     @SuppressLint("WrongConstant")
-    fun createNotification(context: Context, cover: Int, singer: String?, name: String?, icon : Int): NotificationManager {
+    fun createNotification(context: Context, song: Song?, icon: Int): Notification? {
         val channel = getNotificationChannel(context)
         val mediaSession = MediaSessionCompat(context, "player")
         val builder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -34,23 +31,24 @@ object PlayerNotification {
         }
 
         builder.setVisibility(Notification.VISIBILITY_PUBLIC)
-        .addAction(R.drawable.previous, "Previous", pIntent(context, ACTION_PREV))
-        .addAction(icon, "Play", pIntent(context, ACTION_PLAY))
-        .addAction(R.drawable.next, "Next", pIntent(context, ACTION_NEXT))
-            .addAction(R.drawable.stop, "Stop", pIntent(context, ACTION_STOP))
-            .setContentTitle(singer)
+        .addAction(R.drawable.previous, "Previous", pIntent(context, Actions.PREVIOUS.name))
+        .addAction(icon, "Play", pIntent(context, Actions.PLAY.name))
+        .addAction(R.drawable.next, "Next", pIntent(context, Actions.NEXT.name))
+            .addAction(R.drawable.stop, "Stop", pIntent(context, Actions.STOP.name))
+            .setContentTitle(song?.singer)
             .setSmallIcon(R.drawable.ic_music_note)
-            .setLargeIcon(BitmapFactory.decodeResource(context.resources, cover))
-            .setContentText(name)
+            .setLargeIcon(song?.cover?.let { BitmapFactory.decodeResource(context.resources, it) })
+            .setContentText(song?.name)
             .setStyle(androidx.media.app.NotificationCompat.MediaStyle()
                 .setShowActionsInCompactView(0, 1, 2)
             .setMediaSession(mediaSession.sessionToken))
-            .setContentIntent(contentIntent(context))
+            .setContentIntent(contentIntent(context, song))
             .build()
 
-        val notificationManager =  context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(5, builder.build())
-        return notificationManager
+        (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).run {
+            notify(5, builder.build())
+        }
+        return builder.build()
     }
 
     private fun getNotificationChannel(context: Context): NotificationChannel? {
@@ -71,17 +69,28 @@ object PlayerNotification {
         } else null
     }
 
-    private fun pIntent(context: Context, action: String) = PendingIntent.getBroadcast(
-        context,
-        34,
-        Intent(context, NotificationReceiver::class.java).setAction(action),
-        PendingIntent.FLAG_UPDATE_CURRENT
-    )
+    private fun pIntent(context: Context, action: String): PendingIntent? {
 
-    private fun contentIntent(context: Context) = PendingIntent.getActivity(
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            PendingIntent.getForegroundService(
+                context,
+                34,
+                Intent(context, SongService::class.java).setAction(action),
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        } else {
+            PendingIntent.getService(
+                context, 34,
+                Intent(context, SongService::class.java).setAction(action),
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        }
+    }
+
+    private fun contentIntent(context: Context, song: Song?) = PendingIntent.getActivity(
         context,
         0,
-        Intent(context, PlayerActivity::class.java),
+        Intent(context, PlayerActivity::class.java).putExtra("action", "initViews"),
         PendingIntent.FLAG_UPDATE_CURRENT
     )
 }
