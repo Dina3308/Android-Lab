@@ -1,9 +1,11 @@
-package com.example.hw
+package com.example.hw.recyclerview
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hw.R
+import com.example.hw.Song
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_song.view.*
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hw">
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,19 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".SongService"
-            android:enabled="true"
-            android:exported="false" />
-        <receiver android:name=".NotificationReceiver" android:enabled="true">
-            <intent-filter>
-                <action android:name="NEXT" />
-                <action android:name="PLAY" />
-                <action android:name="PREV" />
-                <action android:name="STOP" />
-            </intent-filter>
-        </receiver>
-        <activity android:name=".PlayerActivity" android:launchMode="singleTop" />
-        <activity android:name=".MainActivity">
+            android:name=".service.SongService"
+            android:process=":remote" />
+
+        <activity android:name=".activity.PlayerActivity" android:launchMode="singleTop" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

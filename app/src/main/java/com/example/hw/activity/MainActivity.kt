@@ -1,13 +1,13 @@
-package com.example.hw
+package com.example.hw.activity
 
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
-import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.IBinder
-import android.util.Log
+import androidx.core.content.ContextCompat
+import com.example.hw.R
+import com.example.hw.SongRepository
+import com.example.hw.recyclerview.SongAdapter
+import com.example.hw.service.SongService
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,4 +29,8 @@ class MainActivity : AppCompatActivity() {
         rv_song.adapter = adapter
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService(Intent(this, SongService::class.java))
+    }
 }

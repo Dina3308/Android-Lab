@@ -1,7 +1,8 @@
-package com.example.hw
+package com.example.hw.recyclerview
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hw.Song
 
 class SongAdapter (
     private var list: List<Song>,
