@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">HW</string>
+    <string name="app_name">TO-DO LIST</string>
+    <string name="delete_all">delete all</string>
+    <string name="tasks">Tasks</string>
+    <string name="save">save</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>
