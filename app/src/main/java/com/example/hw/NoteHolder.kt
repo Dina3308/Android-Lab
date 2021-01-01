@@ -12,8 +12,6 @@ class NoteHolder(
     override val containerView: View
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-    private var note: Note? = null
-
     fun bind(note: Note) {
         this.note = note
         with(note) {
