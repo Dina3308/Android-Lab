@@ -16,15 +16,9 @@ class ContentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_content)
 
         val planets = PlanetRepository.getPlanets()
-        when (intent.getStringExtra("id")) {
-            planets[0].id -> setContent(planets[0])
-            planets[1].id -> setContent(planets[1])
-            planets[2].id -> setContent(planets[2])
-            planets[3].id -> setContent(planets[3])
-            planets[4].id -> setContent(planets[4])
-            planets[5].id -> setContent(planets[5])
-            planets[6].id -> setContent(planets[6])
-            planets[7].id -> setContent(planets[7])
+        val id = intent.getStringExtra("id")
+        planetes.find { it.id = id}?.also {
+            setContent(it)
         }
     }
 
