@@ -13,33 +13,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        val fragment = FirstFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.simpleName)
-            .commit()
+        navigateTo(FirstFragment())
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
         when (menuItem.itemId) {
             R.id.firstFragment -> {
-                val fragment = FirstFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.simpleName)
-                    .commit()
-
+                navigateTo(FirstFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.secondFragment -> {
-                val fragment = SecondFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.simpleName)
-                    .commit()
+                navigateTo(SecondFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.thirdFragment -> {
-                val fragment = ThirdFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.simpleName)
-                    .commit()
+                navigateTo(ThirdFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
     }
+    
+    private fun navigateTo(fragment: Fragment){
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.simpleName).commit()
+    }    
 }
