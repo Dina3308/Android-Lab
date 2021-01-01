@@ -38,8 +38,9 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == PICK_IMAGE) {
-            val imageUri = data?.data
-            imageView.setImageURI(imageUri)
+            data?.data?.also {
+                imageView.setImageURI(it)
+            }    
         }
         else{
             Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
