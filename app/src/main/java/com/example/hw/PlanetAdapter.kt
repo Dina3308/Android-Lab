@@ -15,9 +15,4 @@ class PlanetAdapter (
             holder.bind(list[position])
 
         override fun getItemCount(): Int = list.size
-
-        fun updateDataSource(newList: List<Planet>) {
-            list = newList
-            notifyDataSetChanged()
-        }
 }
