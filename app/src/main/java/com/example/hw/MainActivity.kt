@@ -62,11 +62,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment: Fragment?) {
-        val transaction = supportFragmentManager.beginTransaction()
         if (fragment != null) {
-            transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right)
-            transaction.replace(R.id.frameLayout, fragment)
-            transaction.commit()
+            supportFragmentManager.commit {
+                setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right)
+                replace(R.id.frameLayout, fragment)
+            }
         }
     }
 }
