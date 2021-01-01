@@ -44,14 +44,11 @@ class TaskDetail : AppCompatActivity(), CoroutineScope by MainScope() {
 
     private fun init() {
         db = AppDatabase(this)
-        id = intent.getIntExtra("id", -1)
         launch {
-            if (id != -1){
-                id?.let {
-                    task = db.taskDao().getTaskById(it)
-                    titleEditText.setText(task?.title)
-                    descriptionEditText.setText(task?.description)
-                }
+            id = intent.getIntExtra("id", -1)?.takeIf {it != -1}?.also {
+                task = db.taskDao().getTaskById(it)
+                titleEditText.setText(task?.title)
+                descriptionEditText.setText(task?.description)
             }
         }
     }
