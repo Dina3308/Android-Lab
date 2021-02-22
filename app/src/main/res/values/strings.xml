@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">HW</string>
+    <string name="app_name">weather</string>
+    <string name="humidity">Humidity: </string>
+    <string name="cloudiness">Cloudiness: </string>
+    <string name="sunrise_time">Sunrise time: </string>
+    <string name="sunset_time">Sunset time: </string>
+    <string name="wind">Wind: </string>
+    <string name="pressure">Pressure: </string>
+    <string name="feels_like">Feels like</string>
 </resources>
