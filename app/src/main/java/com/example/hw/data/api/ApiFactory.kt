@@ -1,16 +1,16 @@
-package com.example.hw
+package com.example.hw.data.api
 
+import com.example.hw.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object ApiFactory {
+object ApiFactory{
 
     private const val QUERY_API_KEY = "appid"
     private const val QUERY_UNITS_OF_MEASUREMENT = "units"
-    private const val QUERY_LANG = "lang"
 
     private val apiKeyInterceptor = Interceptor { chain ->
         val original = chain.request()
