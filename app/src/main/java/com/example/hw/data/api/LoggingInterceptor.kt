@@ -1,5 +1,6 @@
-package com.example.hw
+package com.example.hw.data.api
 
+import com.example.hw.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor

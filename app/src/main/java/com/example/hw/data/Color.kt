@@ -1,4 +1,4 @@
-package com.example.hw
+package com.example.hw.data
 
 enum class Color(val rgb: String) {
     RED("#FF0000"),
