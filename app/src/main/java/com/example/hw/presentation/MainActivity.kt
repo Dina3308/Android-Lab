@@ -60,13 +60,17 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         if (newText != null) {
             if (NetworkConnection.isConnected(this@MainActivity)){
                 try {
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        startActivity(
-                            Intent(
-                                this@MainActivity,
-                                DescriptionWeatherActivity::class.java
+                    lifecycleScope.launch() {
+                        getWeatherWeatherUseCase.getWeatherByName(newText).run {
+                            startActivity(
+                                Intent(
+                                    this@MainActivity,
+                                    DescriptionWeatherActivity::class.java
+                                ).apply {
+                                    putExtra("id", -1)
+                                }
                             )
-                        )
+                        }
                     }
                 }catch (e: HttpException){
                     Snackbar.make(
