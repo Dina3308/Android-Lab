@@ -1,4 +1,4 @@
-package com.example.hw.presentation.recyclerview
+package com.example.hw.presentation.main.recyclerview
 
 import android.graphics.Color.parseColor
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.example.hw.data.db.entity.ListWeather
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_city.*
 
-class CityHolder (
+class CityHolder  (
     override val containerView: View,
     private val itemClick: (ListWeather) -> Unit
     ): RecyclerView.ViewHolder(containerView), LayoutContainer {
@@ -26,6 +26,7 @@ class CityHolder (
 
         fun bind(city: ListWeather) {
             this.city = city
+
             with(city) {
                 name_tv.text = cityName
                 temp_tv.setTextColor(parseColor(getColor(temp.toInt())))
@@ -55,4 +56,5 @@ class CityHolder (
                 Color.RED.rgb
             }
         }
+
 }

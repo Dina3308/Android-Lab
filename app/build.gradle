@@ -36,6 +36,7 @@ android {
 }
 
 def retrofit = "2.9.0"
+def moxy = "2.2.1"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -63,6 +64,11 @@ dependencies {
     // endregion
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.8'
-    annotationProcessor 'androidx.room:room-compiler:2.2.5'
+    annotationProcessor 'androidx.room:room-compiler:2.2.6'
+
+    implementation "com.github.moxy-community:moxy:$moxy"
+    implementation "com.github.moxy-community:moxy-androidx:$moxy"
+    implementation "com.github.moxy-community:moxy-ktx:$moxy"
+    kapt "com.github.moxy-community:moxy-compiler:$moxy"
 
 }

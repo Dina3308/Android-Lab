@@ -1,4 +1,4 @@
-package com.example.hw.presentation.recyclerview
+package com.example.hw.presentation.main.recyclerview
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

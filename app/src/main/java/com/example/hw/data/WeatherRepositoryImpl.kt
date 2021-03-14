@@ -3,6 +3,7 @@ package com.example.hw.data
 import com.example.hw.WeatherResponse
 import com.example.hw.data.api.WeatherApi
 import com.example.hw.data.api.response.ListWeatherResponse
+import com.example.hw.data.db.AppDatabase
 import com.example.hw.data.db.dao.ListWeatherDao
 import com.example.hw.data.db.dao.WeatherDao
 import com.example.hw.data.db.entity.ListWeather
@@ -11,9 +12,11 @@ import com.example.hw.domain.WeatherRepository
 
 class WeatherRepositoryImpl(
     private val weatherApi: WeatherApi,
-    private val listWeatherDao: ListWeatherDao,
-    private val weatherDao: WeatherDao
+    db: AppDatabase
 ) : WeatherRepository {
+
+    private val listWeatherDao = db.ListWeatherDao()
+    private val weatherDao = db.WeatherDao()
 
     override suspend fun getWeatherById(id: Int): ListWeather? =
         listWeatherDao.getWeatherById(id)
