@@ -1,19 +1,22 @@
-package com.example.hw
+package com.example.hw.presentation.main.recyclerview
 
 import android.graphics.Color.parseColor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hw.data.Color
+import com.example.hw.R
+import com.example.hw.data.db.entity.ListWeather
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_city.*
 
-class CityHolder (
+class CityHolder  (
     override val containerView: View,
-    private val itemClick: (WeatherResponse) -> Unit
+    private val itemClick: (ListWeather) -> Unit
     ): RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        private var city: WeatherResponse? = null
+        private var city: ListWeather? = null
 
         init {
             itemView.setOnClickListener {
@@ -21,17 +24,18 @@ class CityHolder (
             }
         }
 
-        fun bind(city: WeatherResponse) {
+        fun bind(city: ListWeather) {
             this.city = city
+
             with(city) {
-                name_tv.text = name
-                temp_tv.setTextColor(parseColor(getColor(main.temp.toInt())))
-                temp_tv.text = main.temp.toInt().toString().plus("°")
+                name_tv.text = cityName
+                temp_tv.setTextColor(parseColor(getColor(temp.toInt())))
+                temp_tv.text = temp.toInt().toString().plus("°")
             }
         }
 
         companion object {
-            fun create(parent: ViewGroup, itemClick: (WeatherResponse) -> Unit): CityHolder =
+            fun create(parent: ViewGroup, itemClick: (ListWeather) -> Unit): CityHolder =
                 CityHolder(
                     LayoutInflater.from(parent.context).inflate(R.layout.item_city, parent, false),
                     itemClick
@@ -52,4 +56,5 @@ class CityHolder (
                 Color.RED.rgb
             }
         }
+
 }

@@ -1,11 +1,10 @@
 package com.example.hw
+import com.example.hw.data.db.entity.Weather
 import com.google.gson.annotations.SerializedName
 
 data class WeatherResponse(
     @SerializedName("id")
     var id: Int,
-    @SerializedName("base")
-    var base: String,
     @SerializedName("clouds")
     var clouds: Clouds,
     @SerializedName("cod")

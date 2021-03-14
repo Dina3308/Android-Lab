@@ -1,5 +1,7 @@
-package com.example.hw
+package com.example.hw.data.api
 
+import com.example.hw.WeatherResponse
+import com.example.hw.data.api.response.ListWeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,6 +20,5 @@ interface WeatherApi {
     suspend fun getWeatherCities(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double
-        ) : CitiesRepository
-
+        ) : ListWeatherResponse
 }
