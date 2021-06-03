@@ -1,5 +1,6 @@
 package com.example.hw.presentation.description_weather
 
+import androidx.annotation.VisibleForTesting
 import com.example.hw.domain.GetWeatherUseCase
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
@@ -53,7 +54,8 @@ class DescriptionWeatherPresenter(
         }
     }
 
-    private fun showWeather(city: String,
+    @VisibleForTesting
+    fun showWeather(city: String,
                             feelsLike: String,
                             humidity: String,
                             pressure: String,

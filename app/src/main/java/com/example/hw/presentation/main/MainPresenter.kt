@@ -60,8 +60,6 @@ class MainPresenter(
                     viewState.showCities(it)
                 }
                 viewState.consumerError(ex)
-            } catch (throwable: Throwable){
-                viewState.consumerError(throwable)
             } finally {
                 viewState.hideLoading()
             }
@@ -83,8 +81,6 @@ class MainPresenter(
                     viewState.showCities(it)
                 }
                 viewState.consumerError(ex)
-            } catch (throwable: Throwable){
-                viewState.consumerError(throwable)
             } finally {
                 viewState.hideLoading()
             }

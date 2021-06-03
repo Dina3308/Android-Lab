@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'de.mannodermaus.android-junit5'
 
 android {
     compileSdkVersion 29
@@ -33,10 +34,14 @@ android {
         sourceCompatibility = "1.8"
         targetCompatibility = "1.8"
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 def retrofit = "2.9.0"
 def moxy = "2.2.1"
+def junit = "5.7.1"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -49,6 +54,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
@@ -70,5 +76,15 @@ dependencies {
     implementation "com.github.moxy-community:moxy-androidx:$moxy"
     implementation "com.github.moxy-community:moxy-ktx:$moxy"
     kapt "com.github.moxy-community:moxy-compiler:$moxy"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junit}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junit}"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junit}"
+
+    testImplementation "io.mockk:mockk:1.11.0"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }
