@@ -42,6 +42,12 @@ class DescriptionWeatherPresenterTest {
         Dispatchers.setMain(mainThreadSurrogate)
     }
 
+    @AfterEach
+    fun tearDown() {
+        Dispatchers.resetMain()
+        mainThreadSurrogate.close()
+    }
+    
     @Test
     fun showWeatherById() {
         val expectedId = 1
