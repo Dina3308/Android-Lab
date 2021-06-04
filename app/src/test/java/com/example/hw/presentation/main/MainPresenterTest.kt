@@ -47,6 +47,12 @@ class MainPresenterTest {
         presenter.setViewState(viewState)
         Dispatchers.setMain(mainThreadSurrogate)
     }
+    
+    @AfterEach
+    fun tearDown() {
+        Dispatchers.resetMain()
+        mainThreadSurrogate.close()
+    }
 
     @Test
     fun onCityClick() {
