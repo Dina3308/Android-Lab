@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiFactory{
 
-    private const val QUERY_API_KEY = "appid"
+    private const val QUERY_API_KEY = "Authorization"
     private const val QUERY_UNITS_OF_MEASUREMENT = "units"
 
     private val apiKeyInterceptor = Interceptor { chain ->
@@ -56,6 +56,7 @@ object ApiFactory{
     val weatherApi: WeatherApi by lazy {
         retrofit.create(WeatherApi::class.java)
     }
+
 }
 
 

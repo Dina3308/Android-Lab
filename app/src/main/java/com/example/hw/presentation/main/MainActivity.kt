@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.hw.*
 import com.example.hw.data.LocationRepositoryImpl
 import com.example.hw.data.WeatherRepositoryImpl
@@ -40,6 +41,7 @@ class MainActivity :  MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initSearchView()
+
     }
 
     override fun onRequestPermissionsResult(
